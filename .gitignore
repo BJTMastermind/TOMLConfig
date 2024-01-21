@@ -1,7 +1,20 @@
-# Ignore Gradle project-specific cache directory
-.gradle
+# Compiled class files
+*.class
 
-# Ignore Gradle build output directory
-build
-/.idea/
-ExampleConfig.toml
+# gradle
+/.gradle/
+/build/
+
+# vscode
+/.settings/
+/.vscode/
+
+# builds
+/bin/
+
+# Package Files
+*.jar
+*.zip
+
+# Misc Files
+*.directory
