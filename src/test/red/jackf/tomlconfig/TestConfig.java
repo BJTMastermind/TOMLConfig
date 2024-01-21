@@ -1,4 +1,4 @@
-package red.jackf.tomlconfig;
+package test.red.jackf.tomlconfig;
 
 import red.jackf.tomlconfig.annotations.Config;
 

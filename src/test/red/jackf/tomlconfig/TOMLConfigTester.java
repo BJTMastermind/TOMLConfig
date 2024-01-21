@@ -1,7 +1,9 @@
-package red.jackf.tomlconfig;
+package test.red.jackf.tomlconfig;
 
 import org.junit.After;
 import org.junit.Test;
+
+import red.jackf.tomlconfig.TOMLConfig;
 
 import java.io.IOException;
 import java.nio.file.FileSystems;
