@@ -12,32 +12,12 @@ Second fractions are supported up to the nanosecond (9 digits).
 
 ## Quickstart
 
-### Project Setup with Gradle
+### Project Setup
 
-[Authenticate with GitHub packages](https://docs.github.com/en/packages/guides/configuring-gradle-for-use-with-github-packages#authenticating-to-github-packages) - abridged guide [here](https://gist.github.com/JackFred2/4da268bad881db41200c0ebcdab2ff09).
-
-Then, in your project's `build.gradle`, add the following to your `repositories` section:
-
-```groovy
-maven {
-    name = "GitHubPackages - TOMLConfig"
-    url = uri("https://maven.pkg.github.com/JackFred2/TOMLConfig")
-    credentials {
-        username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-        password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
-    }
-}
-```
-
-Finally, in your `dependencies` section, add the following, replacing `%VERSION` with your latest version (removing the `v`):
-
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/JackFred2/TOMLConfig?label=Use%3A&style=flat-square)
-
-```groovy
-dependencies {
-    implementation 'red.jackf:tomlconfig:%VERSION%'
-}
-```
+1. Download the latest `tomlconfig-<version>.jar` from the [Releases](https://github.com/BJTMastermind/TOMLConfig/releases) tab.
+2. Place the jar file into your projects `lib` folder.
+3. If your project is using Maven or Gradle add the path to the local jar to your projects dependencies.
+4. The library is ready to be used in your project.
 
 ### Creating a configuration file
 
@@ -295,7 +275,7 @@ Stock TOMLConfig supports the following java types:
 | `Set<T>`            | Deserialization creates a `LinkedHashSet`.
 | `Map<S,T>`          | Deserialization creates a `LinkedHashMap`.
 
-You can define handlers for other types in two ways: by using the `@Transitive` annotation (easier, less flexible), or 
+You can define handlers for other types in two ways: by using the `@Transitive` annotation (easier, less flexible), or
 by registering a custom `Mapping` object.
 
 ### @Transitive
@@ -336,7 +316,7 @@ public class ExampleConfig implements Config {
         public String name;
         public int id;
 
-        // @Transitive objects require a zero argument constructor 
+        // @Transitive objects require a zero argument constructor
         // Practically, you only need to define one if there are any other constructors.
         private User() {}
 
@@ -359,7 +339,7 @@ Result:
     "Jack",
     "Fred"
   ]
-  
+
   [[server.allowedUsers]]
     name = "Jack"
     id = 1
@@ -371,11 +351,11 @@ Result:
   [[server.allowedUsers]]
     name = "Alice"
     id = 3
-  
+
   [[server.allowedUsers]]
     name = "Bob"
     id = 7
-  
+
   [[server.allowedUsers]]
     name = "Charlie"
     id = 11
@@ -387,8 +367,8 @@ creating one if a constructor with more than 1 argument has already been defined
 
 **TODO: Better documentation and examples to come - apologies!**
 
-You can create custom mappings from TOML types to Java types and vice versa by implementing 
-`red.jackf.tomlconfig.reflections.mapping.Mapping`, and then registering it to your TOMLConfig object using 
+You can create custom mappings from TOML types to Java types and vice versa by implementing
+`red.jackf.tomlconfig.reflections.mapping.Mapping`, and then registering it to your TOMLConfig object using
 `TOMLConfig#register(Class, Mapping)`. For examples,
 see [the standard mappings](src/main/java/red/jackf/tomlconfig/reflections/mapping).
 
@@ -397,10 +377,10 @@ The rules for deciding which mapping is as follows:
 1. If the passed object is a Java Array (`T[]`), then the built-in ArrayMapping is used. No changing.
 2. If there is a direct mapping for an object available, then that mapping is used.
 3. If the passed object is an Enum, then the built-in EnumMapping is used. No changing.
-4. If there is a mapping for a supertype of the passed object (such as for an `Interface` or `abstract` class, e.g. 
-   a `Map` mapping is available for a passed `HashMap` object) then the **first mapping found** is used. Order is 
+4. If there is a mapping for a supertype of the passed object (such as for an `Interface` or `abstract` class, e.g.
+   a `Map` mapping is available for a passed `HashMap` object) then the **first mapping found** is used. Order is
    undefined.
 5. An exception is thrown due to no available mapping.
 
-If a class, or a field holding the class is marked with `@Transitive`, then no mapping is used, and the class is 
+If a class, or a field holding the class is marked with `@Transitive`, then no mapping is used, and the class is
 serialized key-by-key.
