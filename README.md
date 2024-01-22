@@ -14,7 +14,7 @@ Second fractions are supported up to the nanosecond (9 digits).
 
 ### Project Setup
 
-1. Download the latest `tomlconfig-<version>.jar` from the [Releases](https://github.com/BJTMastermind/TOMLConfig/releases) tab.
+1. Download the latest `TOMLConfig-v<version>.jar` from the [Releases](https://github.com/BJTMastermind/TOMLConfig/releases) tab.
 2. Place the jar file into your projects `lib` folder.
 3. If your project is using Maven or Gradle add the path to the local jar to your projects dependencies.
 4. The library is ready to be used in your project.
