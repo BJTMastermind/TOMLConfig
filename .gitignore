@@ -1,10 +1,6 @@
 # Compiled class files
 *.class
 
-# gradle
-/.gradle/
-/build/
-
 # vscode
 /.settings/
 /.vscode/
@@ -13,7 +9,6 @@
 /bin/
 
 # Package Files
-*.jar
 *.zip
 
 # Misc Files
